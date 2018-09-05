@@ -287,9 +287,9 @@ function draw_3D_BOX(scene){
     scene.add(frame);
 
     // Get values of n from the user input
-    var nx = WF_VARS.get("3D_INF_WELL_nx");
-    var ny = WF_VARS.get("3D_INF_WELL_ny");
-    var nz = WF_VARS.get("3D_INF_WELL_nz");
+    var nx = WF_VARS.get("3D_BOX_nx");
+    var ny = WF_VARS.get("3D_BOX_ny");
+    var nz = WF_VARS.get("3D_BOX_nz");
 
     // Calculate the value for A in the wavefunnction
     var A = Math.pow(L3D, 3/2);
