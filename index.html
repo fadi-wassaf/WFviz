@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>WFviz</title>
+
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+
+        <!-- Buefy -->
+        <link rel="stylesheet" href="lib/buefy.min.css">
+        <script src="lib/buefy.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
+
+        <!-- three.js -->
+        <script src="https://threejs.org/build/three.min.js"></script>
+        <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    </head>
+
+    <body>
+
+        <header>
+            <h1 style="font-size: 20px">WFviz - A wavefunction visaulizer.</h1>
+            <p style="font-size: 12px">v1.0.0 - By Fadi Wassaf</p>
+        </header>
+
+        <div class="split options" id="options">
+            
+            <b-field>
+                <b-select placeholder="Select wavefunction type" id="typeSelect">
+                    <optgroup label="1D">
+                        <option value="1D_INF_WELL">1D Infinite Square Well</option>
+                        <!-- <option value="1D_FIN_WELL">1D Finite Square Well</option> -->
+                        <!-- <option value="1D_SHO">1D Simple Harmonic Oscillator</option> -->
+                    </optgroup>
+                    <optgroup label="3D">
+                        <option value="3D_INF_WELL">3D Infinite Square Well</option>
+                        <!-- <option value="3D_FIN_WELL">3D Finite Square Well</option> -->
+                        <!-- <option value="3D_SHO">3D Simple Harmonic Oscillator</option> -->
+                        <!-- <option value="3D_R">3D Radial Wavefunction</option> -->
+                    </optgroup>
+                </b-select>
+            </b-field>
+
+            <div class="field">
+                <b-switch value="true" id="WF_ON" type="is-success" class="label_text">
+                    Display Wavefunction
+                </b-switch>
+            </div>
+
+            <div class="field">
+                <b-switch value="true" id="PROB_ON" type="is-warning" class="label_text">
+                    Display Probability Distribution
+                </b-switch>
+            </div>
+
+            <div class="hide" id="1D_INF_WELL">
+                <b-field label="n" custom-class="has-text-success">
+                    <b-input class="num_in" id="1D_INF_WELL_n" type="number" min="1" max="20" placeholder="1" value="1"></b-input>
+                </b-field>
+            </div>
+
+            <div class="hide" id="1D_FIN_WELL">
+                <b-field label="n">
+                    <b-input id="1D_FIN_WELL_n" type="number" placeholder="1" value="1"></b-input>
+                </b-field>
+            </div>
+
+            <div class="hide" id="1D_SHO">
+                <b-field label="m">
+                    <b-input id="1D_SHO_m" type="number" placeholder="1" value="1"></b-input>
+                </b-field>
+                <b-field label="w">
+                    <b-input id="1D_SHO_w" type="number" placeholder="1" value="1"></b-input>
+                </b-field>
+            </div>
+
+            <div class="hide" id="3D_INF_WELL">
+                <b-field label="nx" custom-class="has-text-success">
+                    <b-input class="num_in" id="3D_INF_WELL_nx" type="number" min="1" max="20" placeholder="1" value="1"></b-input>
+                </b-field>
+                <b-field label="ny" custom-class="has-text-success">
+                    <b-input class="num_in" id="3D_INF_WELL_ny" type="number" min="1" max="20" placeholder="1" value="1"></b-input>
+                </b-field>
+                <b-field label="nz" custom-class="has-text-success">
+                    <b-input class="num_in" id="3D_INF_WELL_nz" type="number" min="1" max="20" placeholder="1" value="1"></b-input>
+                </b-field>
+            </div>
+
+            <div class="hide" id="3D_FIN_WELL">
+                <b-field label="nx">
+                    <b-input id="3D_FIN_WELL_nx" type="number" placeholder="1" value="1"></b-input>
+                </b-field>
+                <b-field label="ny">
+                    <b-input id="3D_FIN_WELL_ny" type="number" placeholder="1" value="1"></b-input>
+                </b-field>
+                <b-field label="nz">
+                    <b-input id="3D_FIN_WELL_nz" type="number" placeholder="1" value="1"></b-input>
+                </b-field>
+            </div>
+            
+            <div class="hide" id="3D_SHO">
+                <b-field label="m">
+                    <b-input id="3D_SHO_m" type="number" placeholder="1" value="1"></b-input>
+                </b-field>
+                <b-field label="wx">
+                    <b-input id="3D_SHO_wx" type="number" placeholder="1" value="1"></b-input>
+                </b-field>
+                <b-field label="wy">
+                    <b-input id="3D_SHO_wy" type="number" placeholder="1" value="1"></b-input>
+                </b-field>
+                <b-field label="wz">
+                    <b-input id="3D_SHO_wz" type="number" placeholder="1" value="1"></b-input>
+                </b-field>
+            </div>
+
+            <div class="hide" id="3D_R">
+                <b-field label="n">
+                    <b-input id="3D_R_n" type="number" placeholder="1" value="1"></b-input>
+                </b-field>
+                <b-field label="l">
+                    <b-input id="3D_R_ml" type="number" placeholder="1" value="0"></b-input>
+                </b-field>
+                <b-field label="ml">
+                    <b-input id="3D_R_ml" type="number" placeholder="1" value="0"></b-input>
+                </b-field>
+            </div>
+
+        </div>
+
+        <div class="split visualizer cover"><p>Please select wavefunction on the left to begin.</p></div>
+
+        <div class="split visualizer" id="visualizer"></div>
+
+    </body>
+    
+</html>
