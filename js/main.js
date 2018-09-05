@@ -2,7 +2,7 @@ Vue.use(Buefy.default);
 const options = new Vue();
 var WFType = null;
 var display_wf = true, display_prob = true;
-var Types = ["1D_INF_WELL", "1D_FIN_WELL", "1D_SHO", "3D_INF_WELL", "3D_FIN_WELL", "3D_SHO", "3D_R"];
+var Types = ["1D_INF_WELL", "1D_FIN_WELL", "1D_SHO", "3D_BOX", "3D_SHO", "3D_R"];
 
 // Create map with all the variables needed to change wavefunction properties
 var WF_VARS = new Map();
@@ -10,12 +10,9 @@ WF_VARS.set("1D_INF_WELL_n", 1);
 WF_VARS.set("1D_FIN_WELL_n", 1);
 WF_VARS.set("1D_SHO_m", 1); 
 WF_VARS.set("1D_SHO_w", 1); 
-WF_VARS.set("3D_INF_WELL_nx", 1);
-WF_VARS.set("3D_INF_WELL_ny", 1);
-WF_VARS.set("3D_INF_WELL_nz", 1);
-WF_VARS.set("3D_FIN_WELL_nx", 1);
-WF_VARS.set("3D_FIN_WELL_ny", 1);
-WF_VARS.set("3D_FIN_WELL_nz", 1);
+WF_VARS.set("3D_BOX_nx", 1);
+WF_VARS.set("3D_BOX_ny", 1);
+WF_VARS.set("3D_BOX_nz", 1);
 WF_VARS.set("3D_SHO_m", 1); 
 WF_VARS.set("3D_SHO_wx", 1); 
 WF_VARS.set("3D_SHO_wy", 1); 
@@ -279,7 +276,7 @@ function draw_1D_SHO(scene){
     draw1DAxes(main_scene);
 }
 
-function draw_3D_INF_WELL(scene){
+function draw_3D_BOX(scene){
     // Draw the axes for the 3D wavefunctions
     draw3DAxes(main_scene);
 
@@ -339,10 +336,6 @@ function draw_3D_INF_WELL(scene){
         }
     }
 
-}
-
-function draw_3D_FIN_WELL(scene){
-    draw3DAxes(main_scene);
 }
 
 function draw_3D_SHO(scene){

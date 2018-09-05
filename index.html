@@ -21,13 +21,15 @@
 
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
+        <meta charset="UTF-8"> 
+
     </head>
 
     <body>
 
         <header>
             <h1 style="font-size: 20px">WFviz - A wavefunction visaulizer.</h1>
-            <p style="font-size: 12px">v1.0.1 - By Fadi Wassaf</p>
+            <p style="font-size: 12px">v1.0.2 - By Fadi Wassaf</p>
         </header>
 
         <div class="split options" id="options">
@@ -40,8 +42,7 @@
                         <!-- <option value="1D_SHO">1D Simple Harmonic Oscillator</option> -->
                     </optgroup>
                     <optgroup label="3D">
-                        <option value="3D_INF_WELL">3D Infinite Square Well</option>
-                        <!-- <option value="3D_FIN_WELL">3D Finite Square Well</option> -->
+                        <option value="3D_BOX">Particle in a 3D Box</option>
                         <!-- <option value="3D_SHO">3D Simple Harmonic Oscillator</option> -->
                         <!-- <option value="3D_R">3D Radial Wavefunction</option> -->
                     </optgroup>
@@ -81,27 +82,15 @@
                 </b-field>
             </div>
 
-            <div class="hide" id="3D_INF_WELL">
+            <div class="hide" id="3D_BOX">
                 <b-field label="nx" custom-class="has-text-success">
-                    <b-input class="num_in" id="3D_INF_WELL_nx" type="number" min="1" max="20" placeholder="1" value="1"></b-input>
+                    <b-input class="num_in" id="3D_BOX_nx" type="number" min="1" max="20" placeholder="1" value="1"></b-input>
                 </b-field>
                 <b-field label="ny" custom-class="has-text-success">
-                    <b-input class="num_in" id="3D_INF_WELL_ny" type="number" min="1" max="20" placeholder="1" value="1"></b-input>
+                    <b-input class="num_in" id="3D_BOX_ny" type="number" min="1" max="20" placeholder="1" value="1"></b-input>
                 </b-field>
                 <b-field label="nz" custom-class="has-text-success">
-                    <b-input class="num_in" id="3D_INF_WELL_nz" type="number" min="1" max="20" placeholder="1" value="1"></b-input>
-                </b-field>
-            </div>
-
-            <div class="hide" id="3D_FIN_WELL">
-                <b-field label="nx">
-                    <b-input id="3D_FIN_WELL_nx" type="number" placeholder="1" value="1"></b-input>
-                </b-field>
-                <b-field label="ny">
-                    <b-input id="3D_FIN_WELL_ny" type="number" placeholder="1" value="1"></b-input>
-                </b-field>
-                <b-field label="nz">
-                    <b-input id="3D_FIN_WELL_nz" type="number" placeholder="1" value="1"></b-input>
+                    <b-input class="num_in" id="3D_BOX_nz" type="number" min="1" max="20" placeholder="1" value="1"></b-input>
                 </b-field>
             </div>
             
