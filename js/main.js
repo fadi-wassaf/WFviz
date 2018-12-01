@@ -19,7 +19,7 @@ WF_VARS.set("3D_SHO_wy", 1);
 WF_VARS.set("3D_SHO_wz", 1);
 WF_VARS.set("3D_R_n", 1);
 WF_VARS.set("3D_R_l", 0);
-WF_VARS.set("WF_R_ml", 0); 
+WF_VARS.set("WF_R_m", 0); 
 
 // Variable used for updating changes
 var wfChanged = false;
@@ -294,7 +294,7 @@ function draw_3D_BOX(scene){
     // Calculate the value for A in the wavefunnction
     var A = Math.pow(L3D, 3/2);
 
-    var prob = function(x, y, z, nx, ny, nz, A){
+    var prob = function(x, y, z, nx, ny, nz){
         var X = Math.sin((nx * Math.PI * x) / L3D);
         var Y = Math.sin((ny * Math.PI * y) / L3D);
         var Z = Math.sin((nz * Math.PI * z) / L3D);
@@ -308,7 +308,7 @@ function draw_3D_BOX(scene){
         for(var y = 0; y <= L3D; y += accuracy3D){
             for(var z = 0; z <= L3D; z += accuracy3D){
                 // Calculate value of probability density at (x, y, z)
-                var p = prob(x, y, z, nx, ny, nz, A);
+                var p = prob(x, y, z, nx, ny, nz);
 
                 // Create reduced probability density to be used for opacity
                 var p_mod = Math.pow(p, 5/2);
@@ -342,6 +342,57 @@ function draw_3D_SHO(scene){
     draw3DAxes(main_scene);
 }
 
+// Helper function to take derivatives of higher powers
+function diffN(expression, i_var, power){
+    var e = expression;
+    for(var i = 0; i < power; i++){
+        e = math.derivative(e, i_var).toString();
+    }
+    return e;
+}
+
+// Helper function that returns a Legendre Polynomial
+function legendrePoly(l){
+    var a = Math.pow(-1, l) / (Math.pow(2, l) * math.factorial(l));
+    var b = diffN('(1-(x^2))^' + l.toString(), 'x', l);
+    return "(" + b + ") * " + a.toString();
+}
+
+// Helper function that returns an Associated Legendre Polynomial
+function assocLegendrePoly(l, m){
+    var a = Math.pow(-1, m);
+    var b = 'sqrt((1-(x^2)) ^ ' + m.toString() + ')';
+    var c = diffN(legendrePoly(l, 'x'), 'x', m);
+    return "(" + c + ") * " + a.toString() + " * " + b;
+}
+
+// Helper function that returns a Lageurre Polynomial
+function laguerrePoly(j){
+    var a = '(e^x)';
+    var b = diffN('(e^(-x)) * x^' + j.toString(), 'x', j);
+    return "(" + b + ") * " + a;
+}
+
+// Helper function that returns an Associated Lageurre Polynomial
+function assocLaguerrePoly(k, j){
+    var a = Math.pow(-1, k);
+    var b = diffN(laguerrePoly(j + k), 'x', k);
+    return "(" + b + ") * " + a;
+}
+
+function testLaguerrePoly(k, j){
+    console.time("laguerre_test");
+    let scope = {x:1};
+    console.log(math.eval(assocLaguerrePoly(k, j), scope));
+    console.timeEnd("laguerre_test");
+}
+
 function draw_3D_R(scene){
-    draw3DAxes(main_scene);
+    // draw3DAxes(main_scene);
+
+    // Get values of n, l and m from the user input
+    var n = WF_VARS.get("3D_R_n");
+    var l = WF_VARS.get("3D_R_l");
+    var m = WF_VARS.get("3D_R_m");
+
 }

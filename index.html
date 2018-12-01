@@ -19,6 +19,9 @@
         <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
 
+        <script src="lib/math.min.js" type="text/javascript"></script>
+        <script src="lib/toxiclibs.min.js" type="text/javascript"></script>
+
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
         <meta charset="UTF-8"> 
@@ -44,7 +47,7 @@
                     <optgroup label="3D">
                         <option value="3D_BOX">Particle in a 3D Box</option>
                         <!-- <option value="3D_SHO">3D Simple Harmonic Oscillator</option> -->
-                        <!-- <option value="3D_R">3D Radial Wavefunction</option> -->
+                        <option value="3D_R">3D Radial Wavefunction</option>
                     </optgroup>
                 </b-select>
             </b-field>
@@ -111,13 +114,13 @@
 
             <div class="hide" id="3D_R">
                 <b-field label="n">
-                    <b-input id="3D_R_n" type="number" placeholder="1" value="1"></b-input>
+                    <b-input id="3D_R_n" class="num_in" type="number" placeholder="1" value="1"></b-input>
                 </b-field>
                 <b-field label="l">
-                    <b-input id="3D_R_ml" type="number" placeholder="1" value="0"></b-input>
+                    <b-input id="3D_R_l" class="num_in" type="number" placeholder="1" value="0"></b-input>
                 </b-field>
                 <b-field label="ml">
-                    <b-input id="3D_R_ml" type="number" placeholder="1" value="0"></b-input>
+                    <b-input id="3D_R_m" class="num_in" type="number" placeholder="1" value="0"></b-input>
                 </b-field>
             </div>
 
