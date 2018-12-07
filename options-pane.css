@@ -1,0 +1,71 @@
+.options-pane {
+    position: absolute;
+    z-index: 1;
+    top: 15px;
+    left: 15px;
+    border-radius: 5px;
+    color: #798795;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+
+.options-pane ul {
+    background-color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border-radius: 6px;
+}
+
+.options-pane li {
+    background: #34495e;
+    background-size: 20px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.214;
+    margin-top: 2px;
+    /* padding: 18px 42px 21px 25px; */
+    padding: 15px;
+    position: relative;
+    transition: .25s;
+}
+
+.options-pane-dropdown {
+    position: relative;
+    background: #1abc9c;
+    background-size: 16px 16px;
+    border-radius: 6px 6px 0 0;
+    color: #34495e;
+    padding: 19px 25px 20px;
+}
+
+input.options-pane-search-field {
+    background: none;
+    border: none;
+    color: #34495e;
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 23px;
+    padding: 5px 0;
+    text-indent: 0;
+    box-shadow: none;
+    outline: none;
+}
+
+.options-pane-icon {
+    float: left;
+    font-size: 20px;
+    padding: 13px 14px 0 0;
+    color: #1abc9c;
+}
+
+.options-pane-content {
+    padding-top: 1px;
+    overflow: hidden;
+}
+
+.options-pane-input {
+    color: white !important;
+    background-color: #2c3e50 !important;
+}

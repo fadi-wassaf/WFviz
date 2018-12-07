@@ -1,135 +1,124 @@
 <!DOCTYPE html>
-<html>
-    <head>
+<html lang="eg">
+<head>
+  <title>WFviz v1.2.0</title>
 
-        <title>WFviz</title>
+  <!-- jQuery -->
+  <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script>if (window.module) module = window.module;</script>
 
-        <link rel="stylesheet" type="text/css" href="style.css"/>
+  <!-- Flat UI & Bootstrap -->
+  <link href="libs/flatUI/css/vendor/bootstrap.min.css" rel="stylesheet">
+  <link href="libs/flatUI/css/flat-ui.css" rel="stylesheet">
+  <!-- Bootstrap 4 requires Popper.js -->
+  <script src="https://unpkg.com/popper.js@1.14.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
+  <script src="libs/flatUI/scripts/flat-ui.js"></script>
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+  <!-- three.js -->
+  <script src="https://threejs.org/build/three.min.js"></script>
+  <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+  <script type="text/javascript" src="js/renderer.js"></script>
 
-        <!-- Buefy -->
-        <link rel="stylesheet" href="lib/buefy.min.css">
-        <script src="lib/buefy.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
+  <!-- <link rel="stylesheet" href="libs/photon/css/photon.min.css"> -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="options-pane.css">
 
-        <!-- three.js -->
-        <script src="https://threejs.org/build/three.min.js"></script>
-        <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
+  <meta charset="UTF-8"> 
 
-        <script src="lib/math.min.js" type="text/javascript"></script>
-        <script src="lib/toxiclibs.min.js" type="text/javascript"></script>
+</head>
+<body>
 
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <!-- Options Sidebar -->
+  <div class="options-pane">
+    <ul class="options-list">
 
-        <meta charset="UTF-8"> 
+      <!-- <p class="title-text">WFviz - Fadi Wassaf</p> -->
 
-    </head>
+      <!-- Wavefunction selection dropdown -->
+      <li class>
+        <select id="WF_SELECT" class="form-control select select-primary" data-toggle="select">
+            <option selected value="1D_INF_WELL">1D Infinite Square Well</option>
+            <option value="3D_BOX">Particle in a 3D Box</option>
+          </select>
+      </li>
 
-    <body>
-
-        <header>
-            <h1 style="font-size: 20px">WFviz - A wavefunction visaulizer.</h1>
-            <p style="font-size: 12px">v1.0.3 - By Fadi Wassaf</p>
-        </header>
-
-        <div class="split options" id="options">
-            
-            <b-field>
-                <b-select placeholder="Select wavefunction type" id="typeSelect">
-                    <optgroup label="1D">
-                        <option value="1D_INF_WELL">1D Infinite Square Well</option>
-                        <!-- <option value="1D_FIN_WELL">1D Finite Square Well</option> -->
-                        <!-- <option value="1D_SHO">1D Simple Harmonic Oscillator</option> -->
-                    </optgroup>
-                    <optgroup label="3D">
-                        <option value="3D_BOX">Particle in a 3D Box</option>
-                        <!-- <option value="3D_SHO">3D Simple Harmonic Oscillator</option> -->
-                        <option value="3D_R">3D Radial Wavefunction</option>
-                    </optgroup>
-                </b-select>
-            </b-field>
-
-            <div class="field">
-                <b-switch value="true" id="WF_ON" type="is-success" class="label_text">
-                    Display Wavefunction
-                </b-switch>
-            </div>
-
-            <div class="field">
-                <b-switch value="true" id="PROB_ON" type="is-warning" class="label_text">
-                    Display Probability Distribution
-                </b-switch>
-            </div>
-
-            <div class="hide" id="1D_INF_WELL">
-                <b-field label="n" custom-class="has-text-success">
-                    <b-input class="num_in" id="1D_INF_WELL_n" type="number" min="1" max="20" placeholder="1" value="1"></b-input>
-                </b-field>
-            </div>
-
-            <div class="hide" id="1D_FIN_WELL">
-                <b-field label="n">
-                    <b-input id="1D_FIN_WELL_n" type="number" placeholder="1" value="1"></b-input>
-                </b-field>
-            </div>
-
-            <div class="hide" id="1D_SHO">
-                <b-field label="m">
-                    <b-input id="1D_SHO_m" type="number" placeholder="1" value="1"></b-input>
-                </b-field>
-                <b-field label="w">
-                    <b-input id="1D_SHO_w" type="number" placeholder="1" value="1"></b-input>
-                </b-field>
-            </div>
-
-            <div class="hide" id="3D_BOX">
-                <b-field label="nx" custom-class="has-text-success">
-                    <b-input class="num_in" id="3D_BOX_nx" type="number" min="1" max="20" placeholder="1" value="1"></b-input>
-                </b-field>
-                <b-field label="ny" custom-class="has-text-success">
-                    <b-input class="num_in" id="3D_BOX_ny" type="number" min="1" max="20" placeholder="1" value="1"></b-input>
-                </b-field>
-                <b-field label="nz" custom-class="has-text-success">
-                    <b-input class="num_in" id="3D_BOX_nz" type="number" min="1" max="20" placeholder="1" value="1"></b-input>
-                </b-field>
-            </div>
-            
-            <div class="hide" id="3D_SHO">
-                <b-field label="m">
-                    <b-input id="3D_SHO_m" type="number" placeholder="1" value="1"></b-input>
-                </b-field>
-                <b-field label="wx">
-                    <b-input id="3D_SHO_wx" type="number" placeholder="1" value="1"></b-input>
-                </b-field>
-                <b-field label="wy">
-                    <b-input id="3D_SHO_wy" type="number" placeholder="1" value="1"></b-input>
-                </b-field>
-                <b-field label="wz">
-                    <b-input id="3D_SHO_wz" type="number" placeholder="1" value="1"></b-input>
-                </b-field>
-            </div>
-
-            <div class="hide" id="3D_R">
-                <b-field label="n">
-                    <b-input id="3D_R_n" class="num_in" type="number" placeholder="1" value="1"></b-input>
-                </b-field>
-                <b-field label="l">
-                    <b-input id="3D_R_l" class="num_in" type="number" placeholder="1" value="0"></b-input>
-                </b-field>
-                <b-field label="ml">
-                    <b-input id="3D_R_m" class="num_in" type="number" placeholder="1" value="0"></b-input>
-                </b-field>
-            </div>
-
+      <!-- 1D Graph Toggles -->
+      <li class="hide" id="1D_TOGGLES">
+        <div class="options-pane-content">
+            <label class="checkbox" style="color:white">
+              <input type="checkbox" id="WF_ON" value="WF_ON" data-toggle="checkbox" checked>
+              Wavefunction
+            </label>
+            <label class="checkbox" style="color:white">
+              <input type="checkbox" id="PROB_ON" value="PROB_ON" data-toggle="checkbox" checked>
+              Probability Distribution
+            </label>
         </div>
+      </li>
 
-        <div class="split visualizer cover"><p>Please select wavefunction on the left to begin.</p></div>
+      <!-- 1D Infinite Well Options -->
+      <li class="1D_INF_WELL hide">
+        <div class="options-pane-icon">
+          <span class="icon-n"></span>
+        </div>
+        <div class="options-pane-content">
+          <input id="1D_INF_WELL_n" class="form-control options-pane-input" type="number" placeholder="n" min="1" max="20" value="1" />
+        </div>
+      </li>
 
-        <div class="split visualizer" id="visualizer"></div>
+      <!-- 3D Toggles -->
+      <li class="hide" id="3D_TOGGLES">
+        <div class="options-pane-content">
+            <label class="checkbox" style="color:white">
+              <input type="checkbox" id="XY_SPLIT" value="XY_SPLIT" data-toggle="checkbox">
+              Split along XY-plane
+            </label>
+            <label class="checkbox" style="color:white">
+              <input type="checkbox" id="XZ_SPLIT" value="XZ_SPLIT" data-toggle="checkbox">
+              Split along XZ-plane
+            </label>
+            <label class="checkbox" style="color:white">
+              <input type="checkbox" id="YZ_SPLIT" value="YZ_SPLIT" data-toggle="checkbox">
+              Split along YZ-plane
+            </label>
+        </div>
+      </li>
 
-    </body>
-    
+      <!-- 3D Particle in a Box Options -->
+      <li class="3D_BOX hide">
+        <div class="options-pane-icon">
+          <span class="icon-n_x"></span>
+        </div>
+        <div class="options-pane-content 3D_BOX">
+          <input id="3D_BOX_nx" class="form-control options-pane-input" type="number" placeholder="n_x" min="1" max="5" value="1"/>
+        </div>
+      </li>
+      <li class="3D_BOX hide">
+        <div class="options-pane-icon">
+          <span class="icon-n_y" style="font-size: 25px"></span>
+        </div>
+        <div class="options-pane-content">
+          <input id="3D_BOX_ny" class="form-control options-pane-input" type="number" placeholder="n_y" min="1" max="5" value="1"/>
+        </div>
+      </li>
+      <li class="3D_BOX hide">
+        <div class="options-pane-icon">
+          <span class="icon-n_z"></span>
+        </div>
+        <div class="options-pane-content">
+          <input id="3D_BOX_nz" class="form-control options-pane-input"  type="number" placeholder="n_z" min="1" max="5" value="1"/>
+        </div>
+      </li>
+      
+      <!-- <p class="footer-text">v1.1.0</p> -->
+
+    </ul>
+  </div>
+
+  <!-- Display Pane -->
+  <div id="visualizer"></div>
+
+</body>
 </html>
