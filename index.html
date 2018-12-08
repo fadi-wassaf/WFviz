@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="eg">
 <head>
-  <title>WFviz v1.2.0</title>
+  <title>WFviz v1.2.1</title>
 
   <!-- jQuery -->
   <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
@@ -11,9 +11,7 @@
   <!-- Flat UI & Bootstrap -->
   <link href="libs/flatUI/css/vendor/bootstrap.min.css" rel="stylesheet">
   <link href="libs/flatUI/css/flat-ui.css" rel="stylesheet">
-  <!-- Bootstrap 4 requires Popper.js -->
   <script src="https://unpkg.com/popper.js@1.14.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-  <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
   <script src="libs/flatUI/scripts/flat-ui.js"></script>
 
   <!-- three.js -->
@@ -21,9 +19,9 @@
   <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
   <script type="text/javascript" src="js/renderer.js"></script>
 
-  <!-- <link rel="stylesheet" href="libs/photon/css/photon.min.css"> -->
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="options-pane.css">
+  <!-- Custom Styling -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/options-pane.css">
 
   <meta charset="UTF-8"> 
 
@@ -119,6 +117,9 @@
 
   <!-- Display Pane -->
   <div id="visualizer"></div>
+
+  <!-- Loading Circle -->
+  <!-- <div id="loading-circle" class="ldBar label-center" data-preset="circle"></div> -->
 
 </body>
 </html>

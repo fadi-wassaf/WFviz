@@ -71,12 +71,6 @@ window.onload = function () {
         wfChanged = true;
     })
 
-    // Setup split plane checkboxes
-
-    // Initially hide display switches (only used for 1D)
-    // $("#WF_ON").hide();
-    // $("#PROB_ON").hide();
-
     // Run visualizer code
     initVisualizer();
     animate();
@@ -378,3 +372,4 @@ function draw_3D_R(scene){
     var m = WF_VARS.get("3D_R_m");
 
 }
+
