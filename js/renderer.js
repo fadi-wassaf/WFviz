@@ -341,7 +341,7 @@ function draw_3D_BOX(scene){
                         opacity: p,
                         transparent: true,
                         depthTest: false,
-                        map: imgLoader.load("./imgs/particle.png")
+                        map: imgLoader.load("./imgs/particle.png"),
                     });
 
                     // Add sprite to scene
@@ -358,18 +358,3 @@ function draw_3D_BOX(scene){
     }
 
 }
-
-function draw_3D_SHO(scene){
-    draw3DAxes(main_scene);
-}
-
-function draw_3D_R(scene){
-    // draw3DAxes(main_scene);
-
-    // Get values of n, l and m from the user input
-    var n = WF_VARS.get("3D_R_n");
-    var l = WF_VARS.get("3D_R_l");
-    var m = WF_VARS.get("3D_R_m");
-
-}
-
