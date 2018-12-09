@@ -1,6 +1,6 @@
 var WFType = "1D_INF_WELL";
 var display_wf = true, display_prob = true;
-var Types = ["1D_INF_WELL", "3D_BOX"];
+var Types = ["1D_INF_WELL", "3D_BOX", "3D_H"];
 
 // Create map with all the variables needed to change wavefunction properties
 var WF_VARS = new Map();
@@ -8,6 +8,9 @@ WF_VARS.set("1D_INF_WELL_n", 1);
 WF_VARS.set("3D_BOX_nx", 1);
 WF_VARS.set("3D_BOX_ny", 1);
 WF_VARS.set("3D_BOX_nz", 1);
+WF_VARS.set("3D_H_n", 1);
+WF_VARS.set("3D_H_m", 1);
+WF_VARS.set("3D_H_l", 1);
 
 // Variable used for updating changes
 var wfChanged = true;
