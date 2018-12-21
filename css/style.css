@@ -25,41 +25,46 @@ canvas {
 }
 
 @font-face {
-    font-family: 'icomoon';
-    src:  url('../fonts/icomoon.eot?frwswt');
-    src:  url('../fonts/icomoon.eot?frwswt#iefix') format('embedded-opentype'),
-      url('../fonts/icomoon.ttf?frwswt') format('truetype'),
-      url('../fonts/icomoon.woff?frwswt') format('woff'),
-      url('../fonts/icomoon.svg?frwswt#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  [class^="icon-"], [class*=" icon-"] {
-    /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'icomoon' !important;
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-  
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .icon-n:before {
-    content: "\e900";
-  }
-  .icon-n_x:before {
-    content: "\e901";
-  }
-  .icon-n_y:before {
-    content: "\e902";
-  }
-  .icon-n_z:before {
-    content: "\e903";
-  }
-  
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?2255w2');
+  src:  url('../fonts/icomoon.eot?2255w2#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?2255w2') format('truetype'),
+    url('../fonts/icomoon.woff?2255w2') format('woff'),
+    url('../fonts/icomoon.svg?2255w2#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-l:before {
+  content: "\e904";
+}
+.icon-m:before {
+  content: "\e905";
+}
+.icon-n:before {
+  content: "\e900";
+}
+.icon-n_x:before {
+  content: "\e901";
+}
+.icon-n_y:before {
+  content: "\e902";
+}
+.icon-n_z:before {
+  content: "\e903";
+}

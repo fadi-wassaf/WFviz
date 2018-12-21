@@ -45,6 +45,7 @@
         <select id="WF_SELECT" class="form-control select select-primary" data-toggle="select">
             <option selected value="1D_INF_WELL">1D Infinite Square Well</option>
             <option value="3D_BOX">Particle in a 3D Box</option>
+            <option value="3D_H">Hydrogen Wavefunction</option>
           </select>
       </li>
 
@@ -119,10 +120,26 @@
       <!-- 3D Hydrogen Wavefunction Options -->
       <li class="3D_H hide">
         <div class="options-pane-icon">
-          <span class="icon-n_x"></span>
+          <span class="icon-n"></span>
         </div>
         <div class="options-pane-content 3D_BOX">
-          
+          <input id="3D_H_n" class="form-control options-pane-input"  type="number" placeholder="n" min="1" max="5" value="1"/>          
+        </div>
+      </li>
+      <li class="3D_H hide">
+        <div class="options-pane-icon">
+          <span class="icon-l"></span>
+        </div>
+        <div class="options-pane-content 3D_BOX">
+          <input id="3D_H_l" class="form-control options-pane-input"  type="number" placeholder="l" min="0" max="5" value="0"/>          
+        </div>
+      </li>
+      <li class="3D_H hide">
+        <div class="options-pane-icon">
+          <span class="icon-m"></span>
+        </div>
+        <div class="options-pane-content 3D_BOX">
+          <input id="3D_H_m" class="form-control options-pane-input"  type="number" placeholder="m" min="0" max="5" value="0"/>          
         </div>
       </li>
 

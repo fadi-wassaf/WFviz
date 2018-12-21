@@ -9,8 +9,8 @@ WF_VARS.set("3D_BOX_nx", 1);
 WF_VARS.set("3D_BOX_ny", 1);
 WF_VARS.set("3D_BOX_nz", 1);
 WF_VARS.set("3D_H_n", 1);
-WF_VARS.set("3D_H_m", 1);
-WF_VARS.set("3D_H_l", 1);
+WF_VARS.set("3D_H_m", 0);
+WF_VARS.set("3D_H_l", 0);
 
 // Variable used for updating changes
 var wfChanged = true;
