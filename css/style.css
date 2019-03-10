@@ -23,14 +23,13 @@ canvas {
     height: 100vh;
     display: block;
 }
-
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?2255w2');
-  src:  url('../fonts/icomoon.eot?2255w2#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?2255w2') format('truetype'),
-    url('../fonts/icomoon.woff?2255w2') format('woff'),
-    url('../fonts/icomoon.svg?2255w2#icomoon') format('svg');
+  src:  url('../fonts/icomoon.eot?yq82fg');
+  src:  url('../fonts/icomoon.eot?yq82fg#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?yq82fg') format('truetype'),
+    url('../fonts/icomoon.woff?yq82fg') format('woff'),
+    url('../fonts/icomoon.svg?yq82fg#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -50,6 +49,9 @@ canvas {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-a:before {
+  content: "\e906";
+}
 .icon-l:before {
   content: "\e904";
 }

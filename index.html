@@ -17,12 +17,13 @@
   <!-- GPU and Math Libs -->
   <script src="libs/gpu.js-1.10.2/bin/gpu.min.js"></script>
   <script src="libs/math/algebrite.bundle-for-browser.js"></script>
+  <script src="https://turbo.github.io/js/turbo.js"></script>
 
   <!-- three.js -->
   <script src="https://threejs.org/build/three.min.js"></script>
   <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
   <script type="text/javascript" src="js/debug.js"></script>
-  <script type="text/javascript" src="js/hydrogen-wf.js"></script>
+  <script type="text/javascript" src="js/wf-functions.js"></script>
   <script type="text/javascript" src="js/renderer.js"></script>
 
   <!-- Custom Styling -->
@@ -43,10 +44,11 @@
       <!-- Wavefunction selection dropdown -->
       <li class>
         <select id="WF_SELECT" class="form-control select select-primary" data-toggle="select">
-            <option selected value="1D_INF_WELL">1D Infinite Square Well</option>
-            <option value="3D_BOX">Particle in a 3D Box</option>
-            <option value="3D_H">Hydrogen Wavefunction</option>
-          </select>
+          <option selected value="1D_INF_WELL">1D Infinite Square Well</option>
+          <option value="1D_HO">1D Quantum Harmonic Oscillator</option>
+          <option value="3D_BOX">Particle in a 3D Box</option>
+          <option value="3D_H">Hydrogen Wavefunction</option>
+        </select>
       </li>
 
       <!-- 1D Graph Toggles -->
@@ -73,6 +75,24 @@
         </div>
       </li>
 
+      <!-- 1D Quantum Harmonic Oscillator Options-->
+      <li class="1D_HO hide">
+        <div class="options-pane-icon">
+          <span class="icon-n"></span>
+        </div>
+        <div class="options-pane-content">
+          <input id="1D_HO_n" class="form-control options-pane-input" type="number" placeholder="n" min="0" max="20" value="0" />
+        </div>
+      </li>
+      <li class="1D_HO hide">
+        <div class="options-pane-icon">
+          <span class="icon-a"></span>
+        </div>
+        <div class="options-pane-content">
+          <input id="1D_HO_a" class="form-control options-pane-input" type="number" placeholder="a" min="-20" max="20" value="4" />
+        </div>
+      </li>
+
       <!-- 3D Toggles -->
       <li class="hide" id="3D_TOGGLES">
         <div class="options-pane-content">
@@ -88,6 +108,13 @@
               <input type="checkbox" id="YZ_SPLIT" value="YZ_SPLIT" data-toggle="checkbox">
               Split along YZ-plane
             </label>
+        </div>
+      </li>
+
+      <!-- REAL/COMPLEX Toggle -->
+      <li class="hide" id="RC_TOGGLE">
+        <div class="options-pane-content">
+          
         </div>
       </li>
 
@@ -118,8 +145,8 @@
       </li>
       
       <!-- 3D Hydrogen Wavefunction Options -->
-      <li class="3D_H hide">
-        <div class="options-pane-icon">
+      <!-- <li class="3D_H hide">
+        <div class="options-pane-icon" style="padding: 13px 19px 0 7px">
           <span class="icon-n"></span>
         </div>
         <div class="options-pane-content 3D_BOX">
@@ -127,8 +154,8 @@
         </div>
       </li>
       <li class="3D_H hide">
-        <div class="options-pane-icon">
-          <span class="icon-l"></span>
+        <div class="options-pane-icon" style="padding: 7px 27px 0 7px">
+          <span class="icon-l" style="font-size: 30px"></span>
         </div>
         <div class="options-pane-content 3D_BOX">
           <input id="3D_H_l" class="form-control options-pane-input"  type="number" placeholder="l" min="0" max="5" value="0"/>          
@@ -141,6 +168,52 @@
         <div class="options-pane-content 3D_BOX">
           <input id="3D_H_m" class="form-control options-pane-input"  type="number" placeholder="m" min="0" max="5" value="0"/>          
         </div>
+      </li> -->
+
+      <li class="3D_H hide">
+        <div class="options-pane-icon" style="padding: 13px 19px 0 7px">
+          <span class="icon-n"></span>
+        </div>
+        <div class="options-pane-content 3D_BOX">
+          <select id="3D_H_n" class="form-control select select-primary select-block" style="min-width: 10px">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+        </div>
+      </li>
+
+      <li class="3D_H hide">
+        <div class="options-pane-icon" style="padding: 7px 27px 0 7px">
+          <span class="icon-l" style="font-size: 30px"></span>
+        </div>
+        <div class="options-pane-content 3D_BOX">
+          <select id="3D_H_l" class="form-control select select-primary select-block" style="min-width: 10px">
+            <option value="0">0</option>
+          </select>
+        </div>
+      </li>
+
+      <li class="3D_H hide">
+        <div class="options-pane-icon">
+          <span class="icon-m"></span>
+        </div>
+        <div class="options-pane-content 3D_BOX">
+          <select id="3D_H_m" class="form-control select select-primary select-block" style="min-width: 10px">
+            <option value="0">0</option>
+          </select>
+        </div>
+      </li>
+
+      <li>
+        <button id="generate" type="submit" class="form-control btn btn-hg btn-primary options-pane-generate">
+          Generate
+        </button>
       </li>
 
       <!-- <p class="footer-text">v1.1.0</p> -->

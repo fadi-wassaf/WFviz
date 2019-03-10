@@ -1,12 +1,13 @@
-# WFViz
+# WFviz
 
 ##### By Fadi Wassaf
 
-This is WFViz, a web applet that can display various wavefunctions while allowing the user to update different variables in real time using three.js. Currently, the supported wavefunctions are:
+This is WFviz, a web applet that can display various wavefunctions while allowing the user to update different variables in real time using three.js. Currently, the supported wavefunctions are:
 
-- Particle in a 1D infinite potential well
+- Particle Trapped in a 1D Infinite Potential Well
+- 1D Quantum Harmonic Oscillator
 - Particle trapped in a 3D Box
-- Hydrogen model
+- Hydrogen Wavefunction
 
 Below I will go through the process used to find these wavefunctions and how they are visualized in the program.
 
@@ -42,7 +43,29 @@ $$
 \psi(x) = \sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right) \; for \; n = 1,2,3...
 $$
 
-This wavefunction and it's corresponding probability density can simply be graphed as functions on the three.js canvas.
+This wavefunction and it's corresponding probability density can simply be graphed as functions made up of lines on the three.js canvas.
+
+### 1D Quantum Harmonic Oscillator
+
+For this model, we follow the same process as the 1D particle in a box. However, our boundary conditions change and become:
+
+- The particles position is not restricted to any "walls" ($-\infin < x < \infin$)
+
+- The potential energy of the particle is $U(x) = \frac{1}{2}kx^2 = \frac{1}{2}m\omega^2x^2$ given that $\omega = \sqrt{\frac{k}{m}}$
+
+Writing out the Schrödinger Equation we end up with:
+$$
+-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}\psi(x) +  \frac{1}{2}m\omega^2x^2\psi(x) = E\psi(x)
+$$
+The general form of the equation that is used to solve this equation is given by a Gaussian function:
+$$
+\psi(x) = Ce^{-\alpha x^2/2}
+$$
+Upon solving the equation and normalizing, one finds a general formula for the wavefunction reliant on the quantum number $n$ and a multiple of a Hermite polynomial of the order $n$.
+$$
+\psi(y) = \left(\frac{\alpha}{\pi}\right)^{1/4} \frac{1}{\sqrt{2^nn!}}H_n(y)e^{-y^2/2} \; where \; y = \sqrt{\alpha}x \; and \; \alpha=\frac{m\omega}{\hbar}
+$$
+In the program, the user can control $n$ and $\alpha$ and both the wavefunction and probability densities are drawn on the three.js canvas using a series of small lines. 
 
 ### Particle in a 3D Box
 
@@ -60,3 +83,13 @@ X(x) = \sqrt{\frac{2}{L_x}}\sin\left(\frac{n_x\pi x}{L_x}\right) \; for \; n_x =
 Y(y) = \sqrt{\frac{2}{L_y}}\sin\left(\frac{n_y\pi y}{L_y}\right) \; for \; n_y = 1,2,3... \\
 Z(z) = \sqrt{\frac{2}{L_z}}\sin\left(\frac{n_z\pi y}{L_z}\right) \; for \; n_z = 1,2,3... 
 $$
+
+Knowing the form of the separated wavefunction from before, we combine these independent parts.
+$$
+\psi(x, y, z) = \sqrt{\frac{8}{L_xL_yL_z}}\sin\left(\frac{n_x\pi x}{L_x}\right)\sin\left(\frac{n_y\pi y}{L_y}\right)\sin\left(\frac{n_z \pi z}{L_z}\right)
+$$
+
+In the program, only the probability density of this wavefunction is shown. At points throughout the box, textured three.js sprites are drawn with color and opacity corresponding to the probability density function. In addition, the user can select to split visible points along the XY, XZ, or YZ planes. This allows the user to see the probability density change shown by color throughout a volume in the box. 
+
+### Hydrogen Wavefunction
+
