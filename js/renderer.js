@@ -2,8 +2,6 @@ var WFType = "1D_INF_WELL";
 var display_wf = true, display_prob = true;
 var Types = ["1D_INF_WELL", "3D_BOX", "3D_H"];
 
-const gpu = new GPU();
-
 // Create map with all the variables needed to change wavefunction properties
 var WF_VARS = new Map();
 WF_VARS.set("1D_INF_WELL_n", 1);
