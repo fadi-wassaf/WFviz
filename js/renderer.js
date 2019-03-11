@@ -193,6 +193,7 @@ function initVisualizer(){
     controls.enableKeys = false;
     controls.dampingFactor = 0.15;
     controls.enableZoom = true;
+    controls.enablePan = false;
     controls.zoomSpeed = 1.2;
     camera.position.set(0, 0, 3);
     controls.update();
